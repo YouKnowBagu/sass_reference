@@ -1,0 +1,49 @@
+//     To compile stylesheet files, command is sass file_to_compile.sass compiled.css
+//     I prefer .sass syntax to .scss, which replaces semicolons with newline and brackets with indentation
+//     To watch and automatically compile upon file changes, command is sass --watch input.sass:output.css
+// ***VARIABLES*** 
+// Allows storing variables for re-use, such as font stacks or colors, using $
+
+// Sass example syntax...
+
+$font-stack: Helvetica, sans-serif
+$primary-color: #570000
+$li-font: Roboto
+
+body 
+    font: 100% $font-stack
+    color: $primary-color
+
+// Compiles to css syntax...
+
+// body {
+//     font: 100%, Helvetica, sans-seriff;
+//     color: #570000;
+// }
+
+
+//  ***NESTING***
+
+// Sass can be nested similarly to html.  Sass example syntax...
+// Comments nest as well!  For multi-line comments, indentation nests.  Just learned this!
+
+nav
+    ul 
+        font: 100%
+
+        li 
+            font: $li-font
+
+        a 
+            text-decoration: none
+
+// Compiles to css syntax...
+    nav ul {
+    font: 100%;
+    }
+    nav ul li {
+        font: 100%, Roboto;
+    }
+    nav ul a {
+        text-decoration: none;
+    }
