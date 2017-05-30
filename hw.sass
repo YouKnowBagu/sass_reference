@@ -1,6 +1,7 @@
 //     To compile stylesheet files, command is sass file_to_compile.sass compiled.css
 //     I prefer .sass syntax to .scss, which replaces semicolons with newline and brackets with indentation
 //     To watch and automatically compile upon file changes, command is sass --watch input.sass:output.css
+//     I use Koala to automatically watch and compile my SASS files.  Koala can also watch and compile Coffeescript.
 // ***VARIABLES*** 
 // Allows storing variables for re-use, such as font stacks or colors, using $
 
@@ -50,3 +51,66 @@ nav
 
 // Sass also provides modularity by prepending the file with an underscore.  For example, _partial.sass
 // You can then import this by starting the main file with @import directive.
+
+// Mixins are similar to partials but stay within a file.  Example mixin definition for vendor prefixes:
+
+=border-radius($radius)
+    -webkit-border-radius: $radius
+    -moz-border-radius:    $radius
+    -ms-border-radius:     $radius
+    border-radius:         $radius
+
+.box
+    +border-radius(10px)
+
+// Which compiles to the following in CSS...
+
+    .box {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    }
+
+// Extend lets you share properties between CSS selectors.  SASS example:
+
+.message
+    border: 1px solid #ccc
+    padding: 10px
+    color: #333
+
+
+.success
+    @extend .message
+    border-color: green
+
+
+.error
+    @extend .message
+    border-color: red
+
+
+.warning
+    @extend .message
+    border-color: yellow
+
+// Which compiles to...
+    .message, .success, .error, .warning {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    color: #333;
+    }
+
+    .success {
+    border-color: green;
+    }
+
+    .error {
+    border-color: red;
+    }
+
+    .warning {
+    border-color: yellow;
+    }
+
+// SASS also allows for the math operators +, -, *, /, and %
